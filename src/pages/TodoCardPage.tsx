@@ -20,7 +20,7 @@ interface Task {
   title: string;
   description: string;
   isDone: boolean;
-  dueDate: Date | null;
+  dueDate: string | null;
   doneAt: Date | null;
 }
 
@@ -68,7 +68,7 @@ export default function TodoCardPage() {
   const addTask = (
     title: string,
     description: string,
-    dueDate: Date | null
+    dueDate: string | null
   ) => {
     const newTask: Task = {
       id: uuidv4(),
@@ -140,7 +140,7 @@ export default function TodoCardPage() {
                   </Text>
                   {task.dueDate ? (
                     <Text size="xs" c="gray">
-                      Due: {task.dueDate.toDateString()}
+                      Due: {task.dueDate}
                     </Text>
                   ) : (
                     <Text size="xs" c="gray">
@@ -149,7 +149,7 @@ export default function TodoCardPage() {
                   )}
                   {task.doneAt && (
                     <Text size="xs" c="chanadda">
-                      Done at: {task.doneAt.toDateString()}
+                      Done at: {task.doneAt.toLocaleString()}
                     </Text>
                   )}
                 </Stack>

@@ -1,4 +1,5 @@
 import { Modal, Stack, TextInput, Textarea, Button } from "@mantine/core";
+import { DateInput } from "@mantine/dates";
 import { useState } from "react";
 
 interface AddTaskModalProps {
@@ -29,6 +30,36 @@ export default function AddTaskModal({
     <Modal opened={opened} onClose={onClose} title="Add Task">
       <Stack>
         {/* TextInput, Textarea, Date */}
+
+        <TextInput
+          label="Input label"
+          withAsterisk
+          description="Input description"
+          error={!title.trim() && "Title is required"}
+          placeholder="Input placeholder"
+          value={title}
+          onChange={(e) => setTitle(e.currentTarget.value)}
+        />
+
+        <Textarea
+          label="Input label"
+          description="Input description"
+          error={!desc.trim() && "Title is required"}
+          placeholder="Input placeholder"
+          value={desc}
+          onChange={(e) => setDesc(e.currentTarget.value)}
+        />
+
+        <DateInput
+          value={dueDate}
+          onChange={setDueDate}
+          label="Date input"
+          placeholder="Date input"
+          valueFormat="ddd MMM DD YYYY"
+          minDate={new Date()}
+          error={!dueDate?.trim() ? "Date is required" : false}
+        />
+
         <Button onClick={handleAdd}>Save</Button>
       </Stack>
     </Modal>
